@@ -31,7 +31,7 @@ public class Canvas extends JPanel {
         setBackground(Color.WHITE);
 
         objects = new ArrayList<>();
-        currentMode = new RectMode();
+        currentMode = new SelectMode();
         
         addMouseListener(new MouseAdapter(){
             @Override
