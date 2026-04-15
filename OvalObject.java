@@ -126,22 +126,6 @@ public class OvalObject extends GraphObject{
             case BOTTOM:
                 bottom += dy;
                 break;
-            case TOP_LEFT:
-                left += dx;
-                top += dy;
-                break;
-            case TOP_RIGHT:
-                right += dx;
-                top += dy;
-                break;
-            case BOTTOM_LEFT:
-                left += dx;
-                bottom += dy;
-                break;
-            case BOTTOM_RIGHT:
-                right += dx;
-                bottom += dy;
-                break;
         }
 
         if (Math.abs(right - left) < MIN_SIZE) {
