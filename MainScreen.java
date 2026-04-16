@@ -127,6 +127,9 @@ public class MainScreen extends JFrame {
                 }else{
                     canvas.cancelToolbarDrag();
                 }
+                canvas.cancelToolbarDrag();
+                canvas.setCurrentMode(new SelectMode());
+                highlightToolButton(selectButton);
             }
         });
 
@@ -160,6 +163,9 @@ public class MainScreen extends JFrame {
                 }else{
                     canvas.cancelToolbarDrag();
                 }
+                canvas.cancelToolbarDrag();
+                canvas.setCurrentMode(new SelectMode());
+                highlightToolButton(selectButton);
             }
         });
 
