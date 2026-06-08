@@ -59,6 +59,37 @@ public class Canvas extends JPanel {
                     currentMode.mouseDragged(e, Canvas.this);
                 }
             }
+
+            @Override
+            public void mouseMoved(MouseEvent e){
+                if(toolbarDragging) return;
+                if(currentMode instanceof SelectMode){
+                    Point p = e.getPoint();
+                    GraphObject hit = findObjectAt(p);
+                    boolean changed = false;
+                    for(GraphObject obj : objects){
+                        boolean shouldBeHovered = (obj == hit);
+                        if(obj.isHovered() != shouldBeHovered){
+                            obj.setHovered(shouldBeHovered);
+                            changed = true;
+                        }
+                    }
+                    if(changed){
+                        repaint();
+                    }
+                } else {
+                    boolean changed = false;
+                    for(GraphObject obj : objects){
+                        if(obj.isHovered()){
+                            obj.setHovered(false);
+                            changed = true;
+                        }
+                    }
+                    if(changed){
+                        repaint();
+                    }
+                }
+            }
         });
     }
     public void addObject(GraphObject obj){
@@ -69,7 +100,16 @@ public class Canvas extends JPanel {
         this.currentMode = mode;
         clearPreviewLine();
         clearSelectionBox();
+        for(GraphObject obj : objects){
+            obj.setHovered(false);
+        }
         repaint();
+    }
+    public void bringToFront(GraphObject obj){
+        if(objects.remove(obj)){
+            objects.add(obj);
+            repaint();
+        }
     }
     public Mode getCurrentMode(){
         return currentMode;

@@ -4,12 +4,21 @@ import java.util.ArrayList;
 
 public abstract class GraphObject {
     protected boolean selected = false;
+    protected boolean hovered = false;
     protected String label = "";
     protected Color fillColor = Color.WHITE;
 
     public abstract void draw(Graphics g);
     public abstract boolean contains(Point p);
     public abstract void move(int dx, int dy);
+
+    public void setHovered(boolean hovered){
+        this.hovered = hovered;
+    }
+
+    public boolean isHovered(){
+        return hovered;
+    }
 
 
     

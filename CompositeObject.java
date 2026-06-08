@@ -19,7 +19,7 @@ public class CompositeObject extends GraphObject{
             child.draw(g);
         }
 
-        if(selected){
+        if(selected || hovered){
             Rectangle bounds = getBounds();
             if(bounds != null){
                 g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);

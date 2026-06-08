@@ -40,6 +40,9 @@ public class GeneralizationLine extends LinkObject {
         g2.drawLine(start.x, start.y, baseCenter.x, baseCenter.y);
         int[] xs = {tip.x, left.x, right.x};
         int[] ys = {tip.y, left.y, right.y};
+        g2.setColor(Color.WHITE);
+        g2.fillPolygon(xs, ys, 3);
+        g2.setColor(Color.BLACK);
         g2.drawPolygon(xs,ys,3);
     }
     

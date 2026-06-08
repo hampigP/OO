@@ -7,7 +7,7 @@ public class RectObject extends GraphObject{
     private int y;
     private int width;
     private int height;
-    private static final int MIN_SIZE = 30;
+    private static final int MIN_SIZE = 20;
 
     public RectObject(int x, int y, int width, int height){
         this.x = x;
@@ -25,7 +25,7 @@ public class RectObject extends GraphObject{
         g.drawRect(x,y,width,height);
         drawLabel(g);
 
-        if(selected){
+        if(selected || hovered){
             for(Port port : getPorts()){
                 port.draw(g);
             }

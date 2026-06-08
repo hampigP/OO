@@ -15,6 +15,9 @@ public class MainScreen extends JFrame {
 
     private Color defaultButtonColor;
     private Color activeButtonColor = Color.DARK_GRAY;
+    private JButton currentActiveButton;
+    private Mode preDragMode;
+    private JButton preDragButton;
 
 
 
@@ -112,6 +115,8 @@ public class MainScreen extends JFrame {
         rectButton.addMouseListener(new MouseAdapter(){
             @Override
             public void mousePressed(MouseEvent e){
+                preDragMode = canvas.getCurrentMode();
+                preDragButton = currentActiveButton;
                 canvas.startToolbarDrag("RECT");
                 highlightToolButton(rectButton);
             }
@@ -128,8 +133,16 @@ public class MainScreen extends JFrame {
                     canvas.cancelToolbarDrag();
                 }
                 canvas.cancelToolbarDrag();
-                canvas.setCurrentMode(new SelectMode());
-                highlightToolButton(selectButton);
+                if(preDragMode != null){
+                    canvas.setCurrentMode(preDragMode);
+                }else{
+                    canvas.setCurrentMode(new SelectMode());
+                }
+                if(preDragButton != null){
+                    highlightToolButton(preDragButton);
+                }else{
+                    highlightToolButton(selectButton);
+                }
             }
         });
 
@@ -148,6 +161,8 @@ public class MainScreen extends JFrame {
         ovalButton.addMouseListener(new MouseAdapter(){
             @Override
             public void mousePressed(MouseEvent e){
+                preDragMode = canvas.getCurrentMode();
+                preDragButton = currentActiveButton;
                 canvas.startToolbarDrag("OVAL");
                 highlightToolButton(ovalButton);
             }
@@ -164,8 +179,16 @@ public class MainScreen extends JFrame {
                     canvas.cancelToolbarDrag();
                 }
                 canvas.cancelToolbarDrag();
-                canvas.setCurrentMode(new SelectMode());
-                highlightToolButton(selectButton);
+                if(preDragMode != null){
+                    canvas.setCurrentMode(preDragMode);
+                }else{
+                    canvas.setCurrentMode(new SelectMode());
+                }
+                if(preDragButton != null){
+                    highlightToolButton(preDragButton);
+                }else{
+                    highlightToolButton(selectButton);
+                }
             }
         });
 
@@ -215,6 +238,7 @@ public class MainScreen extends JFrame {
     }
 
     public void highlightToolButton(JButton activeButton){
+        this.currentActiveButton = activeButton;
         JButton[] buttons = {
             selectButton, rectButton, ovalButton, associationButton, generalizationButton, compositionButton
         };

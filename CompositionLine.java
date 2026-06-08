@@ -45,6 +45,8 @@ public class CompositionLine extends LinkObject {
         g2.drawLine(start.x, start.y, rear.x, rear.y);
         int[] xs = {tip.x, left.x, rear.x, right.x};
         int[] ys = {tip.y, left.y, rear.y, right.y};
+        g2.setColor(Color.BLACK);
+        g2.fillPolygon(xs, ys, 4);
         g2.drawPolygon(xs,ys,4);
     }
 }

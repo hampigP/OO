@@ -68,6 +68,7 @@ public class SelectMode implements Mode {
         if(selectedObject != null){
             canvas.clearSelection();
             selectedObject.setSelected(true);
+            canvas.bringToFront(selectedObject);
             lastPoint = p;
             isDraggingObject = true;
             isSelectingArea = false;
